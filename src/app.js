@@ -18,8 +18,6 @@ var bodyParser  = require('body-parser');
 const cookieParser = require('cookie-parser')
 app.use(cookieParser())
 const auth = require('./middleware/auth')
-require("./db/connection");
-require("../src/models/schema");
 app.set("views", staticPath);
 app.set("view engine", "hbs");
 hbs.registerPartials(partialPath);
@@ -29,6 +27,20 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.urlencoded({ extended: false }));
 router.use(express.urlencoded({ extended: false }));
 
+const connectDB = async () => {
+  try {
+      await mongoose.connect(`mongodb+srv://bjrweatherforecast:BjrWeatherForecast@weather.jl5yz.mongodb.net/license?retryWrites=true&w=majority`, {
+          useNewUrlParser: true,
+          useUnifiedTopology: true,   
+      });
+
+      console.log('MongoDB connected!!');
+  } catch (err) {
+      console.log('Failed to connect to MongoDB', err);
+  }
+};
+
+connectDB();
 //file upload method
 //define storage for excel
 var storage =   multer.diskStorage({
