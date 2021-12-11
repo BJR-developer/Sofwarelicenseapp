@@ -29,7 +29,7 @@ router.use(express.urlencoded({ extended: false }));
 
 const connectDB = async () => {
   try {
-      await mongoose.connect(`mongodb+srv://bjrweatherforecast:BjrWeatherForecast@weather.jl5yz.mongodb.net/license?retryWrites=true&w=majority`, {
+      await mongoose.connect(process.env.MONGODB_URL, {
           useNewUrlParser: true,
           useUnifiedTopology: true,   
       });
