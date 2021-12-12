@@ -18,7 +18,6 @@ var multer = require('multer');
 var bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
 app.use(cookieParser())
-const auth = require('./middleware/auth')
 app.set("views", staticPath);
 app.set("view engine", "hbs");
 hbs.registerPartials(partialPath);
