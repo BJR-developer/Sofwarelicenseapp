@@ -8,15 +8,15 @@ app.use(express.json());
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(`mongodb+srv://bjrweatherforecast:BjrWeatherForecast@weather.jl5yz.mongodb.net/license?retryWrites=true&w=majority`, {
+        await mongoose.connect(process.env.MONGODB_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,   
         });
-
+  
         console.log('MongoDB connected!!');
     } catch (err) {
         console.log('Failed to connect to MongoDB', err);
     }
-};
-
-connectDB();
+  };
+  
+  connectDB();

@@ -258,13 +258,7 @@
       {{>header}}
     </div>
 
-    <script>
-      function show1() {
-        document.getElementById('id01').style.display = 'block';
-        document.getElementById('id02').style.display = 'none';
 
-      }
-    </script>
     <div class="centerDiv">
       <h2>License key validator</h2>
       <p>The license key validator is a tool that allows you to validate license keys and view information about the
@@ -299,7 +293,7 @@
             <td>{{[0].license}}</td>
             <td>{{[0].terminalallowed}}</td>
             <td>{{[0].smslicense}}</td>
-            {{!-- <td style="display: block;">No Data Have</td> --}}
+            <td id="nodata" style="display: block;">No Data Have</td>
             <td>{{[0].smsstatus}}</td>
             <td>{{[0].smsdeadline}}</td>
             <td>{{[0].smscost}}</td>
@@ -312,7 +306,25 @@
       </div>
     </div>
   </div>
-
+    <script>
+      function show1() {
+        document.getElementById('id01').style.display = 'block';
+        document.getElementById('id02').style.display = 'none';
+      }
+      const errorshow = async ()=>{
+        try{
+        const data = {{[0].__v}}
+        if(data===0){
+          document.querySelector('#nodata').style.display = 'none';
+        }
+        }catch(error){
+          console.log(error)
+        }
+        
+      }
+ 
+ errorshow();
+    </script>
 </body>
 
 </html>
